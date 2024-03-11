@@ -1,0 +1,20 @@
+{%load wagtailcore_tags%}
+<div
+    class="box-border px-5 container mx-auto xs:max-w-[600px] sm:px-0 sm:max-w-[560px] md:px-10 md:max-w-[768px] 2xl:px-0 2xl:max-w-[992px]">
+    {%for blog in self.blogs%}
+    <div class="mb-10">
+        <div class="font-bold text-secondary text-sm">
+            <p>{{blog.type}}</p>
+        </div>
+        <div class="font-bold text-primary text-xl">
+            <h2>{{blog.title}}</h2>
+        </div>
+        <div class="font-medium text-primary text-lg">
+            <p>{{blog.body}}</p>
+        </div>
+        <div class="flex font-semibold text-secondary text-sm">
+            <p>{{blog.date}}</p>
+        </div>
+    </div>
+    {%endfor%}
+</div>

@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% load wagtailcore_tags wagtailimages_tags %}
+
+{% block content %}
+<section>
+    <div
+        class="box-border py-20 px-5 container mx-auto xs:max-w-[600px] sm:px-0 sm:max-w-[560px] md:px-10 md:max-w-[768px] 2xl:px-0 2xl:max-w-[992px]">
+        {% for block in page.content %}
+        {% if block.block_type == 'title' %}
+        <h1 class="text-2xl font-bold text-primary">{{ block.value }}</h1>
+        {% endif %}
+
+        {% if block.block_type == 'byline' %}
+        <div class="text-sm font-semibold text-secondary flex">
+            <p>{{ block.value.date }}</p>
+            <p class="mx-2">·</p>
+            <p>{{ block.value.time_to_read }}</p>
+        </div>
+        {% endif %}
+
+        {% if block.block_type == 'section_heading' %}
+        <h3 class="text-base font-bold text-secondary mt-16 mb-2">{{ block.value }}</h3>
+        {% endif %}
+        {% if block.block_type == 'subtitle' %}
+        <h2 class="text-xl font-semibold text-primary">{{ block.value }}</h2>
+        {% endif %}
+        {% if block.block_type == 'body' %}
+        <p class="text-left pb-4">{{ block.value }}</p>
+        {% endif %}
+
+        {% if block.block_type == 'image' %}
+        {% image block.value width-2000 as img %}
+        <img src="{{ img.url }}" class="w-full md:w-6/12 rounded-3xl shadow-2xl mt-8">
+        {% endif %}
+
+        {% if block.block_type == 'author' %}
+        <div class="mt-16">
+            <p class="font-bold text-primary py-2">Author:</p>
+            <div class="text-sm font-medium text-secondary flex items-center ">
+                {% image block.value.image width-2000 as img %}
+                <img src="{{ img.url }}" class="w-12 h-12 rounded-full mr-2">
+                <div>
+                    <p class="font-semibold">{{ block.value.name }}</p>
+                    <p>{{ block.value.bio }}</p>
+                </div>
+            </div>
+        </div>
+
+        {% endif %}
+        {% endfor %}
+    </div>
+
+</section>
+{% endblock %}

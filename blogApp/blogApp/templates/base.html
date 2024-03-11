@@ -1,0 +1,122 @@
+{% load static wagtailcore_tags wagtailuserbar %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <title>
+    {% block title %}
+    {% if page.seo_title %}{{ page.seo_title }}{% else %}{{ page.title }}{% endif %}
+    {% endblock %}
+    {% block title_suffix %}
+    {% wagtail_site as current_site %}
+    {% if current_site and current_site.site_name %}- {{ current_site.site_name }}{% endif %}
+    {% endblock %}
+  </title>
+  {% if page.search_description %}
+  <meta name="description" content="{{ page.search_description }}" />
+  {% endif %}
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  {# Force all links in the live preview panel to be opened in a new tab #}
+  {% if request.in_preview_panel %}
+  <base target="_blank">
+  {% endif %}
+
+
+  <!-- Google Fonts -->
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Karma:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            darkBack: "#f5f2f0",
+            primary: "#291b00",
+            secondary: "#856e40",
+            highlight: "#faedd2",
+
+          },
+          fontSize: {
+            'xs': ['.75rem', '1rem'],      //12, 16
+            'sm': ['.875rem', '1.375rem'], //14, 22
+            'base': ['1rem', '1.625rem'],  //16, 26
+            'lg': ['1.125rem', '1.75rem'], //18, 28
+            'xl': ['1.5rem', '2rem'],      //24, 32
+            '2xl': ['2rem', '2.375rem'],   //32, 38
+            '3xl': ['3rem', '3.25rem'],    //48, 52
+            '4xl': ['3.5rem', '3.75rem'],  //56, 60
+            '5xl': ['4rem', '4rem']        //64, 64
+          },
+          fontFamily: {
+            karma: ['Karma', 'serif']
+          },
+          screens: {
+            'xs': '360px',
+            'sm': '640px',
+            'md': '768px',
+            'lg': '992px',
+            'xl': '1280px',
+            '1xl': '1360px',
+            '2xl': '1680px',
+            '3xl': '1920px',
+          }
+        }
+
+      }
+    }
+  </script>
+
+  {# Global stylesheets #}
+  <link rel="stylesheet" type="text/css" href="{% static 'css/blogApp.css' %}">
+
+  {% block extra_css %}
+  {# Override this in templates to add extra stylesheets #}
+  {% endblock %}
+</head>
+
+<body class="{% block body_class %}{% endblock %} font-karma">
+  {% wagtailuserbar %}
+
+  <div
+    class="box-border px-5 container mx-auto xs:max-w-[600px] sm:px-0 sm:max-w-[560px] md:px-10 md:max-w-[768px] 2xl:px-0 2xl:max-w-[992px]">
+    <div class="pt-10 mx-auto md:px-20 md:max-w-[800px]">
+      <div
+        class="navbar mb-5 px-6 py-3 rounded-[45px] bg-darkBack flex flex-row justify-between mx-auto backdrop-blur-sm bg-opacity-75 items-center">
+        <a class="logo flex flex-row items-center">
+          <p class="text-dark font-semibold ml-1 text-lg">Blog</p>
+        </a>
+        <div class="nav-items flex flex-row">
+          <a class="text-dark py-1.5 px-4 font-semibold text-lg rounded-3xl bg-opacity-75">
+            Home
+          </a>
+          <a class="text-dark py-1.5 px-4 font-semibold text-lg rounded-3xl bg-opacity-75">
+            Explore
+          </a>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {% block content %}{% endblock %}
+
+  {# Global javascript #}
+  <script type="text/javascript" src="{% static 'js/blogApp.js' %}"></script>
+
+  {% block extra_js %}
+  {# Override this in templates to add extra javascript #}
+  {% endblock %}
+</body>
+
+</html>

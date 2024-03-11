@@ -1,0 +1,12 @@
+{%load wagtailcore_tags%}
+<div
+    class="box-border py-20 px-5 container mx-auto xs:max-w-[600px] sm:px-0 sm:max-w-[560px] md:px-10 md:max-w-[768px] 2xl:px-0 2xl:max-w-[992px]">
+    <div class="text-primary">
+        <h1 class="text-3xl font-semibold">{{ self.heading }}</h2>
+    </div>
+    <div class="flex font-semibold text-secondary text-sm">
+        <p>{{self.date}}</p>
+        <p class="mx-1">·</p>
+        <p>{{self.total_blogs}} blogs</p>
+    </div>
+</div>
