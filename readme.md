@@ -12,6 +12,7 @@ This is a simple blog app that allows users to create, read, update, and delete 
 
 - Homepage:
   <img width="720" alt="HomePage.jpg" src="https://github.com/poornima1904/blogApp/assets/98191343/38c695e9-0a55-4725-8716-4ece2fee2fdb">
+
 - Blog:
   <img width="720" alt="BlogPage.jpg" src="https://github.com/poornima1904/blogApp/assets/98191343/2c0d74c4-b610-4dff-a683-c68c59a87e36">
 
